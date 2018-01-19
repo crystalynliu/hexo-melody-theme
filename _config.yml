@@ -5,7 +5,7 @@ language: en
 # Main menu navigation
 # ---------------
 menu:
-  Home: /
+  Blog: /
   Archives: /archives
   Tags: /tags
   Categories: /categories
