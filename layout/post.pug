@@ -16,14 +16,14 @@ block top_img
             if (theme.post_meta.date_type)
               span.post-meta__separator |
             each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
+              i.fa.fa-th-list.post-meta__icon(aria-hidden="true")
               a(href=url_for(item.path)).post-meta__categories #[=item.name]
               if (index < page.categories.data.length - 1)
                  i.fa.fa-angle-right(aria-hidden="true")
           if (theme.disqus.enable && theme.disqus.count)
             if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
               span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
+            i.fa.fa-comments-o.post-meta__icon(aria-hidden="true")
             a(href=url_for(page.path) + '#disqus_thread')
               span.disqus-comment-count(data-disqus-identifier=page.path)
           if (theme.wordcount && theme.wordcount.enable)
