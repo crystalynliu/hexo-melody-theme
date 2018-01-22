@@ -1,10 +1,22 @@
 each article in page.posts.data
   .recent-post-item
+    - var hasCategories = theme.post_meta.categories && article.categories.data.length > 0
+    - var dateType = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
     - var link = article.link || article.path
-      a.article-title(href=url_for(link))= article.title || _p('no_title')
-    if (theme.post_meta.date_type)
-      - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
+      a.article-title(href=url_for(link))= article.title || _p('no_title')    
+    if (dateType)
       time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(article[date_type], config.date_format)]
+    if (hasCategories)
+      span.post-meta__separator |
+      each item, index in article.categories.data
+        i.fa.fa-th-list.post-meta__icon(aria-hidden="true")
+        a(href=url_for(item.path)).post-meta__categories #[=item.name]
+        if (index < article.categories.data.length - 1)
+           i.fa.fa-angle-right(aria-hidden="true")
+    if (theme.disqus.enable && theme.disqus.count)
+      span.post-meta__separator |
+      i.fa.fa-comments-o.post-meta__icon(aria-hidden="true")
+      a(href=url_for(article.path) + '#disqus_thread' data-disqus-identifier=article.path)
     .content!= article.excerpt
     a.more(href=url_for(link) + '#more')= _p('read_more')
     hr
