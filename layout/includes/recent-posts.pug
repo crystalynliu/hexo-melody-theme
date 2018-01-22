@@ -18,6 +18,6 @@ each article in page.posts.data
       i.fa.fa-comments-o.post-meta__icon(aria-hidden="true")
       a(href=url_for(article.path) + '#disqus_thread' data-disqus-identifier=article.path)
     .content!= article.excerpt
-    a.more(href=url_for(link) + '#more')= _p('read_more')
+    a.more(href=url_for(link))= _p('read_more')
     hr
 
